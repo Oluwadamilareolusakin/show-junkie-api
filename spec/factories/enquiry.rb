@@ -1,0 +1,6 @@
+FactoryBot.define do
+  factory :enquiry do
+    user
+    message { Faker::Lorem.paragraph }
+  end
+end
