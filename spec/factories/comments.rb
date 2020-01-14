@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :comment do
     user
-    message { Faker::Lorem.paragraph }
+    content { Faker::Lorem.paragraph }
+    show { 1 }
   end
 end
