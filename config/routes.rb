@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'users/new'
+
+  resources :users
 
   get '/enquiries', to: 'enquiries#index'
   post 'users/:users_id/enquiries', to: 'enquiries#create'
