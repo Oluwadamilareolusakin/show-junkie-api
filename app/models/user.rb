@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  has_many :comments
-
-  validates :name, presence: true
   validates :email, presence: true
+  validates :name, presence: true
+  has_many :suggestions
+  has_many :enquiries
+  has_many :comments
 end
