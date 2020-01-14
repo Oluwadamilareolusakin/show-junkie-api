@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   get 'users/new'
 
-  get 'users/enquiries', to: 'enquiries#index'
+  get '/enquiries', to: 'enquiries#index'
   post 'users/:users_id/enquiries', to: 'enquiries#create'
+
+  get '/suggestions', to: 'suggestions#index'
+  post '/users/:user_id/suggestions', to: 'suggestions#create'
   
   get '/shows/:show/comments', to: 'comments#index'
   post '/shows/:show/comments', to: 'comments#create'
