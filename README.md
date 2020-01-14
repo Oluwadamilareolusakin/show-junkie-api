@@ -1,7 +1,28 @@
 # Movie Junkie 
 Twitter for movies 
 
-# What it does It is the API for Movie Junkie, a web app that allows users browse their favourite TV Shows, share comments about shows, rate shows and follow people who they share similar interests with. 
+# What it does 
+It is the API for Movie Junkie, a web app that allows users browse their favourite TV Shows, share comments about shows, rate shows and follow people who they share similar interests with. 
+
+# End-points
+
+### Enquiries
+
+get '/enquiries'
+post 'users/:users_id/enquiries'
+
+### Suggestions
+get '/suggestions'
+post '/users/:user_id/suggestions'
+
+### Comments
+get '/shows/:show/comments'
+post '/shows/:show/comments'
+delete '/shows/:show/comments/:id'
+
+### Favourites
+get 'users/:user_id/favourites'
+post '/users/:user_id/favourites'
 
 ## Built With 
 - Ruby on Rails 
