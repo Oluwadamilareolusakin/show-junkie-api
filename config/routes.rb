@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   get '/enquiries', to: 'enquiries#index'
   post 'users/:users_id/enquiries', to: 'enquiries#create'
 
+  get 'users/:user_id/favourites', to: 'favourites#index'
+  post 'users/:users_id/favourites', to: 'favourites#create'
+  delete 'users/:users_id/favourites/:id', to: 'favourites#destroy'
+
   get '/suggestions', to: 'suggestions#index'
   post '/users/:user_id/suggestions', to: 'suggestions#create'
   
