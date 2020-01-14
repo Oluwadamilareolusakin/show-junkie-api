@@ -5,8 +5,8 @@ RSpec.describe 'Enquiry API', type: :request do
   let(:user) { create(:user) }
   let(:user_id) { user.id }
 
-  describe 'get /users/enquries' do
-    before { get '/users/enquiries' }
+  describe 'get /enquries' do
+    before { get '/enquiries' }
 
     it 'should return all enquiries' do
       expect(json.size).to eq(10)
