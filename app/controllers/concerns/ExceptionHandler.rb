@@ -12,21 +12,21 @@ module ExceptionHandler
     rescue_from ExceptionHandler::AuthenticationError, with: :four_zero_one
 
     rescue_from ActiveRecord::RecordNotFound do |error|
-      json_response({message: error.message}, :not_found)
+      json_response({ message: error.message }, :not_found)
     end
 
     rescue_from ActiveRecord::RecordInvalid do |error|
-      json_response({message: error.message}, :unprocessable_entity)  
+      json_response({ message: error.message }, :unprocessable_entity)
     end
   end
 
   private
+
   def four_twenty_two(error)
-    json_response({message: error.message}, :unprocessable_entity)
+    json_response({ message: error.message }, :unprocessable_entity)
   end
 
-
   def four_zero_one(error)
-    json_response({message: error.message}, :unauthorized)
+    json_response({ message: error.message }, :unauthorized)
   end
 end

@@ -4,11 +4,11 @@ RSpec.describe 'Users API', type: :request do
   let!(:users) { create_list(:user, 10) }
   let(:user) { users.first }
   let(:user_id) { user.id }
-  
-  describe 'GET /users' do
-    before {get '/users'}
 
-    it 'should return all Users' do  
+  describe 'GET /users' do
+    before { get '/users' }
+
+    it 'should return all Users' do
       expect(json.size).to eq(10)
       expect(json).to_not be_empty
     end
@@ -23,7 +23,7 @@ RSpec.describe 'Users API', type: :request do
 
     context 'with valid attributes' do
       before { post "/users", params: valid_attributes }
-      
+
       it 'should create a user' do
         expect(json['name']).to eq("Name")
       end
@@ -39,7 +39,6 @@ RSpec.describe 'Users API', type: :request do
       it 'should return validation failure content' do
         expect(response.body).to match(/Validation failed: Email can't be blank, Password can't be blank/)
       end
-
     end
   end
 
@@ -48,7 +47,7 @@ RSpec.describe 'Users API', type: :request do
 
     context 'when the record exists' do
       before { put "/users/#{user_id}", params: valid_attributes }
-      
+
       it 'should update a user' do
         expect(response.body).to be_empty
       end
@@ -57,7 +56,5 @@ RSpec.describe 'Users API', type: :request do
         expect(response).to have_http_status(204)
       end
     end
-   
   end
-
 end

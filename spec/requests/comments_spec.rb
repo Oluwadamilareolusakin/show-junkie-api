@@ -13,7 +13,6 @@ RSpec.describe 'Comments API', type: :request do
       expect(json.size).to eq(10)
       expect(json).not_to be_empty
     end
-    
 
     it 'returns status code 200' do
       expect(response).to have_http_status(200)
@@ -21,11 +20,11 @@ RSpec.describe 'Comments API', type: :request do
   end
 
   describe 'POST /shows/:id/comments' do
-    let(:valid_attributes) { { user_id: user.id , show: 1, content: 'This is a sample comment' } }
+    let(:valid_attributes) { { user_id: user.id, show: 1, content: 'This is a sample comment' } }
 
     context 'when the request is valid' do
       before { post "/shows/#{show}/comments", params: valid_attributes }
-      
+
       it 'creates a comment' do
         expect(json['content']).to eq('This is a sample comment')
       end

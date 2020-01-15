@@ -4,11 +4,11 @@ RSpec.describe 'Suggestions API', type: :request do
   let!(:suggestions) { create_list(:suggestion, 10) }
   let(:user) { create(:user) }
   let(:user_id) { user.id }
-  
-  describe 'GET /suggestions' do
-    before {get '/suggestions'}
 
-    it 'should return all suggestions' do  
+  describe 'GET /suggestions' do
+    before { get '/suggestions' }
+
+    it 'should return all suggestions' do
       expect(json.size).to eq(10)
       expect(json).to_not be_empty
     end
@@ -23,7 +23,7 @@ RSpec.describe 'Suggestions API', type: :request do
 
     context 'with valid attributes' do
       before { post "/users/#{user_id}/suggestions", params: valid_attributes }
-      
+
       it 'should create a suggestion' do
         expect(json['message']).to eq("This is a sample suggestion")
       end
@@ -39,8 +39,6 @@ RSpec.describe 'Suggestions API', type: :request do
       it 'should return validation failure content' do
         expect(response.body).to match(/Validation failed: User must exist/)
       end
-
     end
   end
-
 end

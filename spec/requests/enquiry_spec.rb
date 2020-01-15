@@ -17,12 +17,12 @@ RSpec.describe 'Enquiry API', type: :request do
       expect(response).to have_http_status(200)
     end
   end
-  
+
   describe 'post /users/:user_id/enquiries' do
     let(:valid_attributes) { { user_id: user.id, message: 'This is a sample enquiry' } }
 
     context 'valid enquiry details' do
-      before {post "/users/#{user_id}/enquiries", params: valid_attributes}
+      before { post "/users/#{user_id}/enquiries", params: valid_attributes }
 
       it 'should create an enquiry' do
         expect(json['message']).to eq('This is a sample enquiry')

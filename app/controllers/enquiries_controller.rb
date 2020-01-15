@@ -1,5 +1,4 @@
 class EnquiriesController < ApplicationController
-  
   def index
     @enquiries = Enquiry.all
     json_response(@enquiries)
@@ -11,7 +10,8 @@ class EnquiriesController < ApplicationController
   end
 
   private
-    def enquiry_params
-      params.permit(:message, :user_id)
-    end
+
+  def enquiry_params
+    params.permit(:message, :user_id)
+  end
 end

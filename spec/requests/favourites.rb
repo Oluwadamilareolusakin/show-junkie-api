@@ -7,7 +7,7 @@ RSpec.describe do
   let(:user_id) { user.id }
 
   describe 'GET /users/:user_id/favourites' do
-    before {get "/users/#{user_id}/favourites"}
+    before { get "/users/#{user_id}/favourites" }
 
     it 'should return a users favourites' do
       expect(json.size).to eq(10)

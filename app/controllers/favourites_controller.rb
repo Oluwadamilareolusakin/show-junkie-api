@@ -1,5 +1,5 @@
 class FavouritesController < ApplicationController
-  before_action :set_favourite, only: %i[ destroy ]                                                 
+  before_action :set_favourite, only: %i[destroy]
 
   def index
     @favourites = Favourites.where(user_id: (params[:user_id]).to_i)
@@ -16,8 +16,9 @@ class FavouritesController < ApplicationController
   end
 
   private
-    def set_favourite
-      @favourites = Favourite.where(user_id: (params[:user_id]).to_i) 
-      @favourite = @favourites.find_by(id: (params[:id]).to_i)
-    end
+
+  def set_favourite
+    @favourites = Favourite.where(user_id: (params[:user_id]).to_i)
+    @favourite = @favourites.find_by(id: (params[:id]).to_i)
+  end
 end
