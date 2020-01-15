@@ -26,7 +26,7 @@ module ShowJunkieApi
 
     config.action_dispatch.default_headers = {
       'Access-Control-Allow-Origin' => 'https://showjunkie.herokuapp.com',
-      'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
+      'Access-Control-Request-Method' => %w{GET POST DELETE OPTIONS}.join(",")
     }
 
     # Settings in config/environments/* take precedence over those specified here.
