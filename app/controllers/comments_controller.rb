@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[destroy]
 
   def index
-    @comments = Comment.where(show: (params[:show]).to_i)
+    @comments = Comment.where(show: params[:show].to_i)
     json_response(@comments)
   end
 
@@ -19,7 +21,7 @@ class CommentsController < ApplicationController
   private
 
   def set_comment
-    @comments = Comment.where(show: (params[:show]).to_i)
+    @comments = Comment.where(show: params[:show].to_i)
     @comment = @comments.find_by(id: params[:id])
   end
 

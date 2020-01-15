@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Users API', type: :request do
@@ -19,13 +21,13 @@ RSpec.describe 'Users API', type: :request do
   end
 
   describe 'POST /users' do
-    let(:valid_attributes) { { name: "Name", email: "oluwadamilareo@fixus.com.ng", password: "Thisisasample123" } }
+    let(:valid_attributes) { { name: 'Name', email: 'oluwadamilareo@fixus.com.ng', password: 'Thisisasample123' } }
 
     context 'with valid attributes' do
-      before { post "/users", params: valid_attributes }
+      before { post '/users', params: valid_attributes }
 
       it 'should create a user' do
-        expect(json['name']).to eq("Name")
+        expect(json['name']).to eq('Name')
       end
 
       it 'should return status code 201' do
@@ -34,7 +36,7 @@ RSpec.describe 'Users API', type: :request do
     end
 
     context 'with invalid details' do
-      before { post '/users', params: { name: "Another name" } }
+      before { post '/users', params: { name: 'Another name' } }
 
       it 'should return validation failure content' do
         expect(response.body).to match(/Validation failed: Email can't be blank, Password can't be blank/)
@@ -43,7 +45,7 @@ RSpec.describe 'Users API', type: :request do
   end
 
   describe 'PUT /users/:id' do
-    let(:valid_attributes) { { name: "New name", email: "oluwadamilareo@fixus.com.ng", password: "Thisisasample123" } }
+    let(:valid_attributes) { { name: 'New name', email: 'oluwadamilareo@fixus.com.ng', password: 'Thisisasample123' } }
 
     context 'when the record exists' do
       before { put "/users/#{user_id}", params: valid_attributes }

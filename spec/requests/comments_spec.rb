@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Comments API', type: :request do
@@ -35,7 +37,7 @@ RSpec.describe 'Comments API', type: :request do
     end
 
     context 'when request is invalid' do
-      before { post "/shows/#{show}/comments", params: { content: "Another sample comment" } }
+      before { post "/shows/#{show}/comments", params: { content: 'Another sample comment' } }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
