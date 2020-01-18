@@ -29,8 +29,8 @@ module ShowJunkieApi
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.action_dispatch.default_headers = {
-      'Access-Control-Allow-Origin' => 'localhost:3000',
-      'Access-Control-Allow-Origin' => 'showjunkie.herokuapp.com',
+      'Access-Control-Allow-Origin' => 'http://localhost:3000',
+      'Access-Control-Allow-Origin' => 'https://showjunkie.herokuapp.com',
       'Access-Control-Request-Method' => %i[GET POST OPTIONS].join(",")
     }
 
