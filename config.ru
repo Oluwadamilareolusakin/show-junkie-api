@@ -8,15 +8,12 @@ run Rails.application
 
 use Rack::Cors do
   allow do
-    origins '*',
+    origins '*'
 
 
     resource '*'
         :methods => [:get, :post, :put, :delete, :options],
-        :headers => 'Access-Control-Allow-Origin',
-        :expose  => ['Authorization'],
-        :max_age => 600        # headers to expose
-
+        :headers => :any,
   end
 
   allow do
