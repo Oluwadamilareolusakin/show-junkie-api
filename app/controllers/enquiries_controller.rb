@@ -14,6 +14,6 @@ class EnquiriesController < ApplicationController
   private
 
   def enquiry_params
-    params.permit(:message, :user_id)
+    params.permit(:message)
   end
 end

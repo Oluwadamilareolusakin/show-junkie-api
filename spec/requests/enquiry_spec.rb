@@ -5,7 +5,6 @@ require 'rails_helper'
 RSpec.describe 'Enquiry API', type: :request do
   let!(:enquiries) { create_list(:enquiry, 10) }
   let(:user) { create(:user) }
-  let(:user_id) { user.id }
   let(:headers) { valid_headers }
 
   describe 'get /enquries' do
@@ -21,11 +20,11 @@ RSpec.describe 'Enquiry API', type: :request do
     end
   end
 
-  describe 'post /users/:user_id/enquiries' do
-    let(:valid_attributes) { { user_id: user.id, message: 'This is a sample enquiry' }.to_json }
+  describe 'post /enquiries' do
+    let(:valid_attributes) { { message: 'This is a sample enquiry' }.to_json }
 
     context 'valid enquiry details' do
-      before { post "/users/#{user_id}/enquiries", params: valid_attributes, headers: headers }
+      before { post "/enquiries", params: valid_attributes, headers: headers }
 
       it 'should create an enquiry' do
         expect(json['message']).to eq('This is a sample enquiry')
