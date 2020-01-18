@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   delete '/favourites/:id', to: 'favourites#destroy'
 
   get '/suggestions', to: 'suggestions#index'
-  post '/users/:user_id/suggestions', to: 'suggestions#create'
+  post '/suggestions', to: 'suggestions#create'
   
   get '/shows/:show/comments', to: 'comments#index'
   post '/shows/:show/comments', to: 'comments#create'

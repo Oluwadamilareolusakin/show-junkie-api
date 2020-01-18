@@ -24,7 +24,7 @@ RSpec.describe 'Enquiry API', type: :request do
     let(:valid_attributes) { { message: 'This is a sample enquiry' }.to_json }
 
     context 'valid enquiry details' do
-      before { post "/enquiries", params: valid_attributes, headers: headers }
+      before { post '/enquiries', params: valid_attributes, headers: headers }
 
       it 'should create an enquiry' do
         expect(json['message']).to eq('This is a sample enquiry')

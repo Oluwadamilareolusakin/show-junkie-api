@@ -21,11 +21,11 @@ RSpec.describe 'Suggestions API', type: :request do
     end
   end
 
-  describe 'POST /users/:user_id/suggestions' do
+  describe 'POST /suggestions' do
     let(:valid_attributes) { { message: 'This is a sample suggestion', user_id: user.id }.to_json }
 
     context 'with valid attributes' do
-      before { post "/users/#{user_id}/suggestions", params: valid_attributes, headers: headers }
+      before { post "/suggestions", params: valid_attributes, headers: headers }
 
       it 'should create a suggestion' do
         expect(json['message']).to eq('This is a sample suggestion')
@@ -37,7 +37,7 @@ RSpec.describe 'Suggestions API', type: :request do
     end
 
     context 'with invalid details' do
-      before { post '/users/:user_id/suggestions', params: { message: 'Another message' }.to_json, headers: {} }
+      before { post '/suggestions', params: { message: 'Another message' }.to_json, headers: {} }
 
       it 'should return validation failure content' do
         expect(response.body).to match('{"message":"Missing token"}')

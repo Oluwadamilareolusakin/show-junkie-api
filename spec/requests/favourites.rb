@@ -9,7 +9,7 @@ RSpec.describe do
   let(:user_id) { user.id }
 
   describe 'GET /favourites' do
-    before { get "/favourites" }
+    before { get '/favourites' }
 
     it 'should return a users favourites' do
       expect(json.size).to eq(10)
@@ -24,7 +24,7 @@ RSpec.describe do
 
   describe 'POST /favourites' do
     let(:valid_attributes) { { show_id: 1 }.to_json }
-    before { post "/favourites", params: valid_attributes, headers: headers }
+    before { post '/favourites', params: valid_attributes, headers: headers }
 
     it 'should create a favourite' do
       expect(json['show_id']).to eq(1)
