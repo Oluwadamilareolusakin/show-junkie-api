@@ -40,7 +40,7 @@ RSpec.describe 'Suggestions API', type: :request do
       before { post '/users/:user_id/suggestions', params: { message: 'Another message' }.to_json, headers: {} }
 
       it 'should return validation failure content' do
-        expect(response.body).to match("{\"message\":\"Missing token\"}")
+        expect(response.body).to match('{"message":"Missing token"}')
       end
     end
   end

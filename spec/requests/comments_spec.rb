@@ -46,7 +46,7 @@ RSpec.describe 'Comments API', type: :request do
 
       it 'returns a validation failure content' do
         expect(response.body)
-          .to match("{\"message\":\"Missing token\"}")
+          .to match('{"message":"Missing token"}')
       end
     end
   end
