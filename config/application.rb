@@ -30,7 +30,6 @@ module ShowJunkieApi
     # the framework and any gems in your application.
     config.action_dispatch.default_headers = {
       'Access-Control-Allow-Origin' => 'http://localhost:3000',
-      'Access-Control-Allow-Origin' => 'https://showjunkie.herokuapp.com',
       'Access-Control-Request-Method' => %i[GET POST OPTIONS].join(",")
     }
 
