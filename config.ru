@@ -8,7 +8,7 @@ run Rails.application
 
 use Rack::Cors do
   allow do
-    origins 'localhost:3000', 'showjunkie.herokuapp.com',
+    origins '*',
 
 
     resource '*'
