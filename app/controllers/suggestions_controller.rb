@@ -7,7 +7,7 @@ class SuggestionsController < ApplicationController
   end
 
   def create
-    @suggestion = Suggestion.create!(suggestion_params)
+    @suggestion = current_user.suggestions.create!(suggestion_params)
     json_response(@suggestion, :created)
   end
 

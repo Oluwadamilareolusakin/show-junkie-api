@@ -1,61 +1,40 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe 'Users API', type: :request do
-  let!(:users) { create_list(:user, 10) }
-  let(:user) { users.first }
-  let(:user_id) { user.id }
-
-  describe 'GET /users' do
-    before { get '/users' }
-
-    it 'should return all Users' do
-      expect(json.size).to eq(10)
-      expect(json).to_not be_empty
-    end
-
-    it 'should return status code 200' do
-      expect(response).to have_http_status(200)
-    end
+  let(:user) { build(:user) }
+  let(:headers) { valid_headers.except('Authorization') }
+  let(:valid_attributes) do
+    attributes_for(:user, password_confirmation: user.password)
   end
 
-  describe 'POST /users' do
-    let(:valid_attributes) { { name: 'Name', email: 'oluwadamilareo@fixus.com.ng', password: 'Thisisasample123' } }
+  # User signup test suite
+  describe 'POST /signup' do
+    context 'when valid request' do
+      before { post '/signup', params: valid_attributes.to_json, headers: headers }
 
-    context 'with valid attributes' do
-      before { post '/users', params: valid_attributes }
-
-      it 'should create a user' do
-        expect(json['name']).to eq('Name')
-      end
-
-      it 'should return status code 201' do
+      it 'creates a new user' do
         expect(response).to have_http_status(201)
       end
-    end
 
-    context 'with invalid details' do
-      before { post '/users', params: { name: 'Another name' } }
-
-      it 'should return validation failure content' do
-        expect(response.body).to match(/Validation failed: Email can't be blank, Password can't be blank/)
-      end
-    end
-  end
-
-  describe 'PUT /users/:id' do
-    let(:valid_attributes) { { name: 'New name', email: 'oluwadamilareo@fixus.com.ng', password: 'Thisisasample123' } }
-
-    context 'when the record exists' do
-      before { put "/users/#{user_id}", params: valid_attributes }
-
-      it 'should update a user' do
-        expect(response.body).to be_empty
+      it 'returns success message' do
+        expect(json['message']).to match(/Account created successfully/)
       end
 
-      it 'should return status code 204' do
-        expect(response).to have_http_status(204)
+      it 'returns an authentication token' do
+        expect(json['auth_token']).not_to be_nil
+      end
+    end
+
+    context 'when invalid request' do
+      before { post '/signup', params: {}, headers: headers }
+
+      it 'does not create a new user' do
+        expect(response).to have_http_status(422)
+      end
+
+      it 'returns failure message' do
+        expect(json['message'])
+          .to match(/Validation failed: Password can't be blank, Email can't be blank, Name can't be blank/)
       end
     end
   end

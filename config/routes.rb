@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :users
+  post '/signup', to: 'users#create'
+  post '/auth/login', to: 'authentication#authenticate'
 
   get '/enquiries', to: 'enquiries#index'
   post 'users/:user_id/enquiries', to: 'enquiries#create'

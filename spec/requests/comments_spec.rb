@@ -7,9 +7,10 @@ RSpec.describe 'Comments API', type: :request do
   let(:user) { create(:user) }
   let(:id) { comments.first.id }
   let(:show) { 1 }
+  let(:headers) { valid_headers }
 
   describe 'GET /shows/:id/comments' do
-    before { get "/shows/#{show}/comments" }
+    before { get "/shows/#{show}/comments", headers: headers }
 
     it 'returns show comments' do
       expect(json.size).to eq(10)
@@ -22,10 +23,10 @@ RSpec.describe 'Comments API', type: :request do
   end
 
   describe 'POST /shows/:id/comments' do
-    let(:valid_attributes) { { user_id: user.id, show: 1, content: 'This is a sample comment' } }
+    let(:valid_attributes) { { show: 1, content: 'This is a sample comment' }.to_json }
 
     context 'when the request is valid' do
-      before { post "/shows/#{show}/comments", params: valid_attributes }
+      before { post "/shows/#{show}/comments", params: valid_attributes, headers: headers }
 
       it 'creates a comment' do
         expect(json['content']).to eq('This is a sample comment')
@@ -37,7 +38,7 @@ RSpec.describe 'Comments API', type: :request do
     end
 
     context 'when request is invalid' do
-      before { post "/shows/#{show}/comments", params: { content: 'Another sample comment' } }
+      before { post "/shows/#{show}/comments", params: { content: 'Another sample comment' }.to_json, headers: {} }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
@@ -45,13 +46,13 @@ RSpec.describe 'Comments API', type: :request do
 
       it 'returns a validation failure content' do
         expect(response.body)
-          .to match(/Validation failed: User must exist/)
+          .to match("{\"message\":\"Missing token\"}")
       end
     end
   end
 
   describe 'DELETE /shows/:show/:id/comments' do
-    before { delete "/shows/#{show}/comments/#{id}" }
+    before { delete "/shows/#{show}/comments/#{id}", headers: headers }
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)

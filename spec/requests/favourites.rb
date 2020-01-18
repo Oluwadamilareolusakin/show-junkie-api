@@ -23,8 +23,8 @@ RSpec.describe do
   end
 
   describe 'POST /users/:user_id/favourites' do
-    let(:valid_attributes) { { user_id: user_id, show_id: 1 } }
-    before { post "/users/#{user_id}/favourites", params: valid_attributes }
+    let(:valid_attributes) { { user_id: user_id, show_id: 1 }.to_json }
+    before { post "/users/#{user_id}/favourites", params: valid_attributes, headers: headers }
 
     it 'should create a favourite' do
       expect(json['show_id']).to eq(1)
@@ -36,7 +36,7 @@ RSpec.describe do
   end
 
   describe 'DELETE /users/:user_id/favourites/:id' do
-    before { delete "/users/#{user_id}/favourites/#{favourite_id}" }
+    before { delete "/users/#{user_id}/favourites/#{favourite_id}", headers: headers }
 
     it 'should create a favourite' do
       expect(response.body).to be_empty

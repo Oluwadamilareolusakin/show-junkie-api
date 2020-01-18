@@ -9,7 +9,7 @@ class FavouritesController < ApplicationController
   end
 
   def create
-    @favourite = Favourite.create!(favourite_params)
+    @favourite = current_user.create!(favourite_params)
   end
 
   def destroy

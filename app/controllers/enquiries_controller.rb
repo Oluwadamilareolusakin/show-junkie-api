@@ -7,7 +7,7 @@ class EnquiriesController < ApplicationController
   end
 
   def create
-    @enquiry = Enquiry.create!(enquiry_params)
+    @enquiry = current_user.enquiries.create!(enquiry_params)
     json_response(@enquiry, :created)
   end
 

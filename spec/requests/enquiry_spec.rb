@@ -6,9 +6,10 @@ RSpec.describe 'Enquiry API', type: :request do
   let!(:enquiries) { create_list(:enquiry, 10) }
   let(:user) { create(:user) }
   let(:user_id) { user.id }
+  let(:headers) { valid_headers }
 
   describe 'get /enquries' do
-    before { get '/enquiries' }
+    before { get '/enquiries', headers: headers }
 
     it 'should return all enquiries' do
       expect(json.size).to eq(10)
@@ -21,10 +22,10 @@ RSpec.describe 'Enquiry API', type: :request do
   end
 
   describe 'post /users/:user_id/enquiries' do
-    let(:valid_attributes) { { user_id: user.id, message: 'This is a sample enquiry' } }
+    let(:valid_attributes) { { user_id: user.id, message: 'This is a sample enquiry' }.to_json }
 
     context 'valid enquiry details' do
-      before { post "/users/#{user_id}/enquiries", params: valid_attributes }
+      before { post "/users/#{user_id}/enquiries", params: valid_attributes, headers: headers }
 
       it 'should create an enquiry' do
         expect(json['message']).to eq('This is a sample enquiry')
