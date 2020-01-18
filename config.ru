@@ -13,7 +13,7 @@ use Rack::Cors do
 
     resource '*'
         :methods => [:get, :post, :put, :delete, :options],
-        :headers => 'x-domain-token',
+        :headers => 'Access-Control-Allow-Origin',
         :expose  => ['Authorization'],
         :max_age => 600        # headers to expose
 
