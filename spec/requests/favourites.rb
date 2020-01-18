@@ -23,7 +23,7 @@ RSpec.describe do
   end
 
   describe 'POST /users/:user_id/favourites' do
-    let(:valid_attributes) { { user_id: user_id, show_id: 1 }.to_json }
+    let(:valid_attributes) { { show_id: 1 }.to_json }
     before { post "/users/#{user_id}/favourites", params: valid_attributes, headers: headers }
 
     it 'should create a favourite' do
