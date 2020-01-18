@@ -13,7 +13,7 @@ use Rack::Cors do
 
     resource '*'
         :methods => [:get, :post, :put, :delete, :options],
-        :headers => :any,
+        :headers => :any, :credentials => false
   end
 
   allow do
