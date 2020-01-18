@@ -4,11 +4,11 @@ Rails.application.routes.draw do
   post '/auth/login', to: 'authentication#authenticate'
 
   get '/enquiries', to: 'enquiries#index'
-  post 'users/:user_id/enquiries', to: 'enquiries#create'
+  post '/enquiries', to: 'enquiries#create'
 
-  get '/users/:user_id/favourites', to: 'favourites#index'
-  post '/users/:user_id/favourites', to: 'favourites#create'
-  delete '/users/:user_id/favourites/:id', to: 'favourites#destroy'
+  get '/favourites', to: 'favourites#index'
+  post '/favourites', to: 'favourites#create'
+  delete '/favourites/:id', to: 'favourites#destroy'
 
   get '/suggestions', to: 'suggestions#index'
   post '/users/:user_id/suggestions', to: 'suggestions#create'
