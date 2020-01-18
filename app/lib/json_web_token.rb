@@ -9,7 +9,7 @@ class JsonWebToken
     payload[:exp] = exp.to_i
     # sign token with application secret
     p "I AM: #{HMAC_SECRET}"
-    JWT.encode(payload, 123909EI9E82930UEJE1E787612EGUW)
+    JWT.encode(payload, HMAC_SECRET)
   end
 
   def self.decode(token)
