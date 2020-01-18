@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_many :suggestions
   has_many :enquiries
   has_many :comments
+  has_many :favourites
 end
