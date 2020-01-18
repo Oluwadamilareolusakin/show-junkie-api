@@ -30,8 +30,17 @@ module ShowJunkieApi
     # the framework and any gems in your application.
     config.action_dispatch.default_headers = {
       'Access-Control-Allow-Origin' => 'http://localhost:3000',
-      'Access-Control-Request-Method' => %i[GET POST OPTIONS].join(",")
+      'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
     }
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins ['localhost:3000', 'showjunkie.herokuapp.com']
+        resource '*',
+          headers: :any,
+          methods: :any
+      end
+    end
 
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
