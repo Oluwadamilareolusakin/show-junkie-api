@@ -28,17 +28,12 @@ module ShowJunkieApi
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
-    config.action_dispatch.default_headers = {
-      'Access-Control-Allow-Origin' => 'http://localhost:3000',
-      'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
-    }
-
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins ['localhost:3000', 'showjunkie.herokuapp.com']
         resource '*',
           headers: :any,
-          methods: :any
+          methods: [:get, :post, :put, :patch, :delete, :options, :head]
       end
     end
 
