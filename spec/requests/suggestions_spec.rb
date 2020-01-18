@@ -25,7 +25,7 @@ RSpec.describe 'Suggestions API', type: :request do
     let(:valid_attributes) { { message: 'This is a sample suggestion', user_id: user.id }.to_json }
 
     context 'with valid attributes' do
-      before { post "/suggestions", params: valid_attributes, headers: headers }
+      before { post '/suggestions', params: valid_attributes, headers: headers }
 
       it 'should create a suggestion' do
         expect(json['message']).to eq('This is a sample suggestion')
