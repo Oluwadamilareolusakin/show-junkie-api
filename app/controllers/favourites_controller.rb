@@ -25,6 +25,6 @@ class FavouritesController < ApplicationController
   end
 
   def favourite_params
-    params.permit.call(:show_id)
+    params.permit(:show_id)
   end
 end
