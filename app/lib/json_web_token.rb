@@ -8,7 +8,7 @@ class JsonWebToken
     # set expiry to 24 hours from creation time
     payload[:exp] = exp.to_i
     # sign token with application secret
-    JWT.encode(payload, "12893u129e9quweh0913i1jw9uw0912i3")
+    JWT.encode(payload, 12893u129e9quweh0913i1jw9uw0912i3)
   end
 
   def self.decode(token)
