@@ -8,7 +8,7 @@ class AuthenticationController < ApplicationController
       AuthenticateUser.new(auth_params[:email], auth_params[:password]).call
     data = {
       auth_token: auth_result[:auth_token],
-      user_user: auth_result[:user]
+      user: auth_result[:user]
     }
     json_response(data)
   end
