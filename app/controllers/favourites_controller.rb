@@ -23,7 +23,7 @@ class FavouritesController < ApplicationController
 
   def set_favourite
     @favourites = current_user.favourites
-    @favourite = @favourites.find_by(id: params[:id].to_i)
+    @favourite = @favourites.find(params[:id].to_i)
   end
 
   def favourite_params
