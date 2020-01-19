@@ -15,7 +15,6 @@ class FavouritesController < ApplicationController
   end
 
   def destroy
-    p "I am #{@favourite}"
     @favourite.destroy
     head :no_content
   end
