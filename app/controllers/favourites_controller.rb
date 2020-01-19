@@ -2,7 +2,6 @@
 
 class FavouritesController < ApplicationController
   before_action :set_favourite, only: %i[destroy]
-  skip_before_action :authorize_request, only: %i[create]
 
   def index
     @favourites = current_user.favourites
