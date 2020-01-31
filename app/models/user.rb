@@ -1,6 +1,12 @@
-class User < ApplicationRecord
-  has_many :comments
+# frozen_string_literal: true
 
-  validates :name, presence: true
+class User < ApplicationRecord
+  has_secure_password
+
   validates :email, presence: true
+  validates :name, presence: true
+  validates :password, presence: true
+  has_many :suggestions
+  has_many :enquiries
+  has_many :comments
 end
